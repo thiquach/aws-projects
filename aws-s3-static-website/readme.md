@@ -18,7 +18,7 @@ This project demonstrates how to host a simple static website using Amazon S3.
 See bucket-policy.json
 
 ## Website Endpoint
-https://thi-s3-static-website-bucket.s3.us-east-1.amazonaws.com/index.html
+https://sudoku-time-202603231426.s3.us-east-1.amazonaws.com/index.html
 
-## References
+git ## References
 https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
