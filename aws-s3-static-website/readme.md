@@ -20,5 +20,5 @@ See bucket-policy.json
 ## Website Endpoint
 https://sudoku-time-202603231426.s3.us-east-1.amazonaws.com/index.html
 
-git ## References
+## References
 https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
