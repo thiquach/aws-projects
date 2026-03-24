@@ -11,10 +11,10 @@ This project demonstrates how to host a simple static website using Amazon S3 an
 ## Steps implemented
 1. Created an S3 bucket to store static website assets
 2. Uploaded HTML, CSS, and image files
-3. Configured the bucket to **block public access**
+3. Configured the bucket to block public access
 4. Created a CloudFront distribution
 5. Set the S3 bucket as the origin for CloudFront
-6. Configured **Origin Access Control (OAC)** to restrict direct S3 access
+6. Configured Origin Access Control (OAC) to securely allow Amazon CloudFront to access content from the private S3 bucket.
 7. Updated S3 bucket policy to allow access only from CloudFront
 8. Enabled HTTPS delivery via CloudFront
 9. Verified the website via the CloudFront distribution endpoint
@@ -23,7 +23,7 @@ This project demonstrates how to host a simple static website using Amazon S3 an
 See bucket-policy.json
 
 ## Website Endpoint
-https://sudoku-time-202603231426.s3.us-east-1.amazonaws.com/index.html
+https://d173s6725hkpgl.cloudfront.net/index.html
 
 ## References
 https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
