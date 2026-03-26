@@ -16,11 +16,11 @@ Client → API Gateway (GET /hello) → Lambda → Response ("Hello from Lambda!
 ## Implementation Steps
 
 1. Created an AWS Lambda function that returns "Hello from Lambda!"
-2. Configured a REST API in API Gateway
-3. Created a GET method and integrated it with the Lambda function
-4. Deployed the API to a stage (e.g. dev)
-5. Tested the endpoint using curl and browser requests
-6. Verified successful responses and execution logs in CloudWatch
+2. Configured a REST API in Amazon API Gateway
+3. Defined a resource and GET method, and integrated it with the Lambda function
+4. Deployed the API Gateway to a stage (e.g. dev)
+5. Invoked the API Gateway endpoint to trigger the lambda function
+6. Verified the response returned "Hello from Lambda!" successfully
 
 ## Security Considerations
 
@@ -36,7 +36,6 @@ API Gateway is granted permission to invoke the Lambda function
 
 ## Observability
 
-Invokes the URL after dev stage was deployed to verify "Hello from Lambda!" message
 Request and execution logs are available in Amazon CloudWatch
 Used to:
 Verify API requests
