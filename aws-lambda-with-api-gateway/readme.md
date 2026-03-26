@@ -1,63 +1,56 @@
-# Invoke a AWS Lambda Function from a S3 File Upload Trigger
+# AWS Lambda with API Gateway (Serverless API)
 
-This project demonstrates how to build an event-driven workflow where an AWS Lambda function is triggered by file uploads to an Amazon S3 bucket.
+This project demonstrates how to build a simple serverless API where an AWS Lambda function is invoked via HTTP requests through Amazon API Gateway.
 
 ## Architecture
 
-* A private Amazon S3 bucket ready to store an uploaded object
-* S3 is configured to send ObjectCreated event notifications
-* An AWS Lambda function is triggered upon file upload to S3
-* The Lambda function:
-
-  * Extracts the bucket name and object key from the event
-  * Retrieves object metadata (e.g. content type) using S3 API
-  * Logs relevant details about the object's content type to Amazon CloudWatch
+* Amazon API Gateway (REST API) exposes an HTTP endpoint
+* Incoming requests are routed to an AWS Lambda function
+* The Lambda function processes the request and returns a response
+* Logs and execution details are captured in Amazon CloudWatch
 
 ## Flow
 
-Upload File → S3 Bucket → Lambda Trigger → Process Metadata → CloudWatch Logs
+Client → API Gateway (GET /hello) → Lambda → Response ("Hello from Lambda!")
 
 ## Implementation Steps
 
-1. Created a private S3 bucket and prepared a file for upload
-2. Created an AWS Lambda function in the same region as the S3 bucket
-3. Implemented the Lambda handler (`lambdaS3Trigger.py`) to process S3 events
-4. Configured S3 event notifications to trigger the Lambda function on object creation
-5. Assigned an IAM role to Lambda with permissions to read from S3
-6. Uploaded files to S3 to trigger the Lambda function
-7. Verified execution via Lambda monitoring and CloudWatch logs
+1. Created an AWS Lambda function that returns "Hello from Lambda!"
+2. Configured a REST API in API Gateway
+3. Created a GET method and integrated it with the Lambda function
+4. Deployed the API to a stage (e.g. dev)
+5. Tested the endpoint using curl and browser requests
+6. Verified successful responses and execution logs in CloudWatch
 
 ## Security Considerations
 
-* S3 bucket remains private (no public access)
-* Lambda execution role follows least privilege principle
-* Permissions limited to:
-
-  * `s3:GetObject`
-  * CloudWatch logging
+* Lambda execution role follows the principle of least privilege
+* API Gateway is configured with permissions to invoke the Lambda function
+* Logging is enabled for monitoring and debugging
 
 ## IAM Policy
 
-See lambda-execution-role-resource-based-policy.json
+Lambda execution role includes:
+CloudWatch logging permissions
+API Gateway is granted permission to invoke the Lambda function 
 
 ## Observability
 
-* Logs are captured in Amazon CloudWatch
-* Useful for:
+Invokes the URL after dev stage was deployed to verify "Hello from Lambda!" message
+Request and execution logs are available in Amazon CloudWatch
+Used to:
+Verify API requests
+Debug errors
+Monitor Lambda performance
 
-  * Debugging event payloads
-  * Verifying object metadata retrieval
-  * Monitoring Lambda execution
 
 ## Key Learnings
 
-* How to build event-driven architectures using S3 and Lambda
-* Configuring S3 event notifications
-* Parsing S3 event payloads in Lambda
-* Applying IAM roles and permissions correctly
+* How to build event-driven architectures using API Gateway and Lambda
+* Applying IAM roles and permissions for API Gateway to invoke HelloWorld lambda function correctly
 * Using CloudWatch for monitoring and debugging
 
 ## References
 https://docs.aws.amazon.com/lambda/
-https://docs.aws.amazon.com/lambda/latest/dg/example_serverless_S3_Lambda_section.html
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventNotifications.html
+https://docs.aws.amazon.com/lambda/latest/dg/example_cross_LambdaAPIGateway_section.html
+https://docs.aws.amazon.com/apigateway/
